@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/add_page.dart';
+import 'package:flutter_application_1/list_page.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -287,7 +288,9 @@ class _HomePageState extends State<HomePage> {
   Widget _listsWidget() {
     return Card(
       child: InkWell(
-        onTap: () {},
+        onTap: () {
+          Navigator.push(context, MaterialPageRoute(builder: (context) => Listpage()));
+        },
         child: Stack(
           children: <Widget>[
             Container(

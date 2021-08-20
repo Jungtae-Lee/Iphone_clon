@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/bloc/todo_bloc.dart';
 import 'package:flutter_application_1/item.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class Listpage extends StatefulWidget {
   const Listpage({Key? key}) : super(key: key);
@@ -13,6 +15,8 @@ class _ListpageState extends State<Listpage> {
 
   @override
   Widget build(BuildContext context) {
+    final _todoBloc = BlocProvider.of<TodoBloc>(context);
+
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -23,13 +27,20 @@ class _ListpageState extends State<Listpage> {
           IconButton(onPressed: () {}, icon: Icon(Icons.pending))
         ],
       ),
-      body: ListView(
-        children: _itemList.map((item) => _buildItem(item)).toList(),
+      body: BlocBuilder<TodoBloc, List<Item>>(
+        bloc: _todoBloc,
+        builder: (BuildContext context, List state) {
+          return Center(
+            child: ListView(
+              children: _itemList.map((item) => _buildItem(item, state, _todoBloc)).toList(),
+            ),
+          );
+        },
       ),
     );
   }
 
-  Widget _buildItem(Item item) {
+  Widget _buildItem(Item item, List state, TodoBloc bloc) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: ListTile(

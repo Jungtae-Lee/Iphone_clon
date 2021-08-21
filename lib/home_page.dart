@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/add_page.dart';
+import 'package:flutter_application_1/list_page.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -34,7 +34,7 @@ class _HomePageState extends State<HomePage> {
               child: Row(children: <Widget>[
                 TextButton.icon(
                     onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => AddPage()));
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => ListPage()));
                     },
                     icon: Icon(Icons.add),
                     label: Text('새로운 미리 알림')),
@@ -287,7 +287,9 @@ class _HomePageState extends State<HomePage> {
   Widget _listsWidget() {
     return Card(
       child: InkWell(
-        onTap: () {},
+        onTap: () {
+          Navigator.push(context, MaterialPageRoute(builder: (context) => ListPage()));
+        },
         child: Stack(
           children: <Widget>[
             Container(
